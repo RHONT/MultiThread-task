@@ -5,8 +5,9 @@ import java.util.List;
 
 public class RunProgram {
     public static void main(String[] args) {
-        Master master = new Master("Мастер");
-        Master master2 = new Master("Мастер2");
+        House house=new House();
+        Master master = new Master("Мастер",house);
+        Master master2 = new Master("Мастер2",house);
         Rob rob=new Rob(100,"Вор");
         Rob rob2=new Rob(200,"Вор_2");
         Rob rob3=new Rob(300,"Вор_3");

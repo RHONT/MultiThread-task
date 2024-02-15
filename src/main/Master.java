@@ -5,8 +5,8 @@ import java.util.*;
 public class Master extends Thread implements Command {
     public final House _house;
 
-    public Master(String name) {
-        this._house = new House();
+    public Master(String name, House _house) {
+        this._house = _house;
         setName(name);
         start();
     }

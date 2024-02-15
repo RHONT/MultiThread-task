@@ -22,22 +22,24 @@ public class Rob extends Thread implements Command {
 
     @Override
     public void action(Collection<Integer> collection) {
-        Iterator<Integer> it = collection.iterator();
-        Integer temp = null;
-        while (it.hasNext()) {
-            Integer value = it.next();
-            if (freePlace() >= value) {
-                _plenum += value;
-                temp = value;
-                System.out.println("Вор " + getName() + " смог украсть " + value + ". У вора теперь добра " + _plenum);
-                break;
+        synchronized (collection){
+            Iterator<Integer> it = collection.iterator();
+            Integer temp = null;
+            while (it.hasNext()) {
+                Integer value = it.next();
+                if (freePlace() >= value) {
+                    _plenum += value;
+                    temp = value;
+                    System.out.println(getName() + " смог украсть " + value + ". У вора теперь добра " + _plenum);
+                    break;
+                }
             }
-        }
-        if (temp == null) {
-            System.out.println(getName() + "В сумку ничего не лезет!");
-            if (freePlace()==0) {
-                interrupt();
-            }
+            if (temp == null) {
+                System.out.println(getName() + " В сумку ничего не лезет!");
+                if (freePlace()==0) {
+                    interrupt();
+                }
+            } else collection.remove(temp);
         }
     }
 

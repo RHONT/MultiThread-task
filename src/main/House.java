@@ -6,10 +6,10 @@ public final class House {
     public final List<Integer> _items;
 
     public House() {
-        this._items = new ArrayList<>();
+        this._items = new Vector<>();
     }
 
-    public synchronized void doOperation(Command command) throws InterruptedException {
+    public void doOperation(Command command) throws InterruptedException {
            command.action(_items);
     }
 }
